@@ -1,27 +1,17 @@
 let images = $('img')
-// console.log(images.length);
 var i = 0;
 
-
-
-while (i < images.length) {
-    $(`#img${i + 1}`).fadeIn(1000);
-    i++;
+function showImg() {
+    setTimeout(function () {
+        $(`#img${i + 1}`).fadeIn(500);
+        i++;
+        if (i <= images.length) {
+            showImg()
+        } else if (i > images.length) {
+            $(`#img${images.length}`).fadeOut(500);
+            images.length--;
+            showImg()
+        }
+    }, 500);
 }
-
- 
-while (images.length > 0) {
-    $(`#img${images.length}`).fadeOut(1000);
-    images.length--;
-}
-
-
-// for (let i = 0; i < images.length; i++) {
-//     $(`#img${i + 1}`).fadeIn(1000)
-// }
-
-
-// for (let i = 0; i < images.length; i++) {
-//     $(`#img${i+1}`).fadeOut(1000)
-//     console.log(i);
-// }
+showImg()
